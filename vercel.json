@@ -1,26 +1,14 @@
 {
-  "version": 2,
-  "functions": {
-    "api/*.js": {
-      "includeFiles": "product_detail.html"
-    }
-  },
-  "routes": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "/product/(?<slug>[a-zA-Z0-9_-]+)",
-      "dest": "/api/index.js?slug=$slug"
+      "source": "/product/:slug",
+      "destination": "/api/index.js?slug=:slug"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/storage/(.*)",
-      "dest": "/storage/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

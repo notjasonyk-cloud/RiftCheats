@@ -1,14 +1,12 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "rewrites": [
-    {
-      "source": "/product/:slug",
-      "destination": "/api/index.js?slug=:slug"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+
+  "name": "riftcheats-store",
+  "version": "1.0.0",
+  "description": "RiftCheats Storefront",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

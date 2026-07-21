@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const API_KEY = process.env.SELLAUTH_API_KEY || "5958068|VK9THd3Zr7GNuV3ia1GPndQKyp6xT6UC26lbqZGu55ac44ae";
-const SHOP_ID = process.env.SELLAUTH_SHOP_ID || "223549";
+const API_KEY = process.env.SELLAUTH_API_KEY;
+const SHOP_ID = process.env.SELLAUTH_SHOP_ID;
 
 // Map URL path slugs to SellAuth product path strings
 const SLUG_TO_PATH = {

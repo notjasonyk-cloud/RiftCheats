@@ -1,9 +1,7 @@
-const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const PORT = process.env.PORT || 3500;
 const API_KEY = process.env.SELLAUTH_API_KEY;
 const SHOP_ID = process.env.SELLAUTH_SHOP_ID;
 const API_URL = process.env.SELLAUTH_API_URL;
@@ -19,25 +17,6 @@ function getProductsUrl() {
   return configuredUrl;
 }
 
-const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon',
-  '.webp': 'image/webp',
-  '.webm': 'video/webm',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
-  '.ttf': 'font/ttf',
-  '.otf': 'font/otf'
-};
-
 // Map URL path slugs to SellAuth product path strings
 const SLUG_TO_PATH = {
   'rust': 'rust',
@@ -49,7 +28,6 @@ const SLUG_TO_PATH = {
   'woofer': 'hwid-spoofer'
 };
 
-// Mapping of slugs to our local box art images and local custom description
 const PRODUCT_ASSETS = {
   'rust': {
     image: '/storage/images/rust.jpg',
@@ -81,7 +59,6 @@ const PRODUCT_ASSETS = {
   }
 };
 
-// Cache SellAuth products list to minimize latency
 let cachedProducts = null;
 let lastFetchTime = 0;
 
@@ -110,7 +87,6 @@ function fetchProductsFromSellAuth(callback) {
         if (json && json.data) {
           cachedProducts = json.data;
           lastFetchTime = Date.now();
-          console.log(`Successfully updated products cache from SellAuth API! Count: ${cachedProducts.length}`);
           callback(null, cachedProducts);
         } else {
           callback(new Error('Invalid response structure from SellAuth API'), null);
@@ -128,196 +104,143 @@ function fetchProductsFromSellAuth(callback) {
   req.end();
 }
 
-const server = http.createServer((req, res) => {
+module.exports = (req, res) => {
   if (!API_KEY || !SHOP_ID || !API_URL) {
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'text/plain');
     res.end('Server configuration error: missing SellAuth environment variables.');
     return;
   }
-  const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
-  let pathname = parsedUrl.pathname;
-
-  const sendHtmlTemplate = (filePath) => {
-    fs.readFile(filePath, 'utf8', (error, template) => {
-      if (error) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Internal Server Error');
-        return;
-      }
-      const output = template
-        .replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID))
-        .replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(output);
-    });
-  };
-
-  // Intercept product routes: /product/:slug
-  const productMatch = pathname.match(/^\/product\/([a-zA-Z0-9_-]+)$/);
-  if (productMatch) {
-    const slug = productMatch[1].toLowerCase();
-    const sellauthPath = SLUG_TO_PATH[slug];
-
-    if (sellauthPath) {
-      // 1. Fetch live products from SellAuth API
-      fetchProductsFromSellAuth((err, products) => {
-        if (err || !products) {
-          console.error("SellAuth fetch failed, falling back to local simulation:", err);
-          // If SellAuth API is down, fallback to 500 error
-          res.writeHead(500, { 'Content-Type': 'text/plain' });
-          res.end('SellAuth API Connection Error. Please try again.');
-          return;
-        }
-
-        // Find the matched product in our live shop catalog
-        const liveProd = products.find(p => p.path === sellauthPath);
-        if (!liveProd) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('Product not found in SellAuth catalog.');
-          return;
-        }
-
-        // 2. Read product_detail.html
-        const templatePath = path.join(__dirname, 'product_detail.html');
-        fs.readFile(templatePath, 'utf8', (err, data) => {
-          if (err) {
-            res.writeHead(500, { 'Content-Type': 'text/plain' });
-            res.end('Internal Server Error');
-            return;
-          }
-
-          const localAsset = PRODUCT_ASSETS[slug] || { image: liveProd.images[0]?.url, desc: liveProd.description };
-
-          // Build our dynamically integrated product JSON
-          const productJson = {
-            id: liveProd.id,
-            path: liveProd.path,
-            unique_id: liveProd.salt,
-            name: liveProd.name,
-            description: localAsset.desc,
-            meta_title: liveProd.name + " - RiftCheats",
-            meta_description: "Information: Windows 10 & 11 Supported, Intel & AMD Processors.",
-            meta_image_url: localAsset.image,
-            meta_twitter_card: "summary_large_image",
-            product_tabs: [],
-            price: liveProd.variants[0]?.price || "0.00",
-            min_price: liveProd.variants[0]?.price || "0.00",
-            max_price: liveProd.variants[liveProd.variants.length - 1]?.price || "0.00",
-            min_price_slash: null,
-            max_price_slash: null,
-            min_price_with_discount: parseFloat(liveProd.variants[0]?.price || 0),
-            max_price_with_discount: parseFloat(liveProd.variants[liveProd.variants.length - 1]?.price || 0),
-            currency: liveProd.currency || "USD",
-            image_url: null,
-            image_urls: [localAsset.image],
-            sort_priority: 0,
-            deliverables: null,
-            stock: -1,
-            hide_stock_count: false,
-            group_id: liveProd.group_id,
-            category_id: null,
-            category: null,
-            type: "variant",
-            visibility: "public",
-            variants: liveProd.variants.map(v => ({
-              id: v.id,
-              name: v.name,
-              description: null,
-              price: v.price,
-              price_slash: null,
-              quantity_min: v.quantity_min,
-              quantity_max: v.quantity_max,
-              volume_discounts: [],
-              deliverables: 0,
-              stock: v.stock,
-              disabled_payment_method_ids: null
-            })),
-            products_sold: liveProd.products_sold,
-            quantity_min: null,
-            quantity_max: null,
-            status_color: "#2ecc71",
-            status_text: "Undetected",
-            custom_fields: [],
-            product_badges: { card: [], page: [] },
-            discord_required: false,
-            discord_guild_id: null,
-            show_views_count: false,
-            show_sales_count: false,
-            show_sales_notifications: false,
-            sales_count_hours: null,
-            created_at: liveProd.created_at || "2026-06-30T04:09:09.000000Z",
-            is_mandatory: false,
-            metadata: null
-          };
-
-          let output = data;
-          output = output.replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID));
-          output = output.replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
-
-          // Replace metadata titles and images
-          output = output.replace(/<title>.*?<\/title>/g, `<title>${liveProd.name} - RiftCheats</title>`);
-          output = output.replace(/<meta property="og:title" content=".*?"/g, `<meta property="og:title" content="${liveProd.name}"`);
-          output = output.replace(/<meta name="twitter:title" content=".*?"/g, `<meta name="twitter:title" content="${liveProd.name}"`);
-          output = output.replace(/<meta property="og:image" content=".*?"/g, `<meta property="og:image" content="${localAsset.image}"`);
-          output = output.replace(/<meta name="twitter:image" content=".*?"/g, `<meta name="twitter:image" content="${localAsset.image}"`);
-
-          // Replace the main Alpine.js product variable
-          const productPattern = /product:\s*\{"id":774973,[\s\S]*?\}\s*,\s*productAddons/g;
-          output = output.replace(productPattern, `product: ${JSON.stringify(productJson)}, productAddons`);
-
-          // Re-render user reviews using the exact name of the product
-          output = output.replace(/R6 Exodus Lite/g, liveProd.name);
-          output = output.replace(/External Rust/g, liveProd.name);
-          output = output.replace(/Apex Internal/g, liveProd.name);
-
-          res.writeHead(200, { 'Content-Type': 'text/html' });
-          res.end(output);
-        });
-      });
-      return;
-    }
+  // Extract slug from request (either from rewritten query parameter or directly from original URL)
+  let slug = req.query.slug;
+  if (!slug) {
+    const urlParts = req.url.split('?')[0].split('/');
+    slug = urlParts[urlParts.length - 1];
   }
+  slug = (slug || '').toLowerCase();
 
-  // Fallback to static files check
-  let filePath = path.join(__dirname, pathname);
-  
-  if (!filePath.startsWith(__dirname)) {
-    res.statusCode = 403;
-    res.end('Forbidden');
+  const sellauthPath = SLUG_TO_PATH[slug];
+  if (!sellauthPath) {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Product path configuration missing.');
     return;
   }
 
-  fs.stat(filePath, (err, stats) => {
-    if (!err && stats.isDirectory()) {
-      filePath = path.join(filePath, 'index.html');
+  fetchProductsFromSellAuth((err, products) => {
+    if (err || !products) {
+      console.error("SellAuth API Error:", err);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('SellAuth API Connection Error. Please refresh and try again.');
+      return;
     }
 
-    fs.exists(filePath, (exists) => {
-      if (exists && fs.statSync(filePath).isFile()) {
-        const ext = path.extname(filePath).toLowerCase();
-        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    const liveProd = products.find(p => p.path === sellauthPath);
+    if (!liveProd) {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Product not found in SellAuth dashboard.');
+      return;
+    }
 
-        if (ext === '.html') {
-          sendHtmlTemplate(filePath);
-          return;
-        }
-        res.writeHead(200, { 'Content-Type': contentType });
-        fs.createReadStream(filePath).pipe(res);
-      } else {
-        const indexPath = path.join(__dirname, 'index.html');
-        fs.exists(indexPath, (indexExists) => {
-          if (indexExists) {
-            sendHtmlTemplate(indexPath);
-          } else {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found');
-          }
-        });
+    // Read product_detail.html from bundled folder
+    const templatePath = path.join(process.cwd(), 'product_detail.html');
+    fs.readFile(templatePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error("Failed to read product_detail.html:", err);
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Server configuration error: product template file missing.');
+        return;
       }
+
+      const localAsset = PRODUCT_ASSETS[slug] || { image: liveProd.images[0]?.url, desc: liveProd.description };
+
+      const productJson = {
+        id: liveProd.id,
+        path: liveProd.path,
+        unique_id: liveProd.salt,
+        name: liveProd.name,
+        description: localAsset.desc,
+        meta_title: liveProd.name + " - RiftCheats",
+        meta_description: "Information: Windows 10 & 11 Supported, Intel & AMD Processors.",
+        meta_image_url: localAsset.image,
+        meta_twitter_card: "summary_large_image",
+        product_tabs: [],
+        price: liveProd.variants[0]?.price || "0.00",
+        min_price: liveProd.variants[0]?.price || "0.00",
+        max_price: liveProd.variants[liveProd.variants.length - 1]?.price || "0.00",
+        min_price_slash: null,
+        max_price_slash: null,
+        min_price_with_discount: parseFloat(liveProd.variants[0]?.price || 0),
+        max_price_with_discount: parseFloat(liveProd.variants[liveProd.variants.length - 1]?.price || 0),
+        currency: liveProd.currency || "USD",
+        image_url: null,
+        image_urls: [localAsset.image],
+        sort_priority: 0,
+        deliverables: null,
+        stock: -1,
+        hide_stock_count: false,
+        group_id: liveProd.group_id,
+        category_id: null,
+        category: null,
+        type: "variant",
+        visibility: "public",
+        variants: liveProd.variants.map(v => ({
+          id: v.id,
+          name: v.name,
+          description: null,
+          price: v.price,
+          price_slash: null,
+          quantity_min: v.quantity_min,
+          quantity_max: v.quantity_max,
+          volume_discounts: [],
+          deliverables: 0,
+          stock: v.stock,
+          disabled_payment_method_ids: null
+        })),
+        products_sold: liveProd.products_sold,
+        quantity_min: null,
+        quantity_max: null,
+        status_color: "#2ecc71",
+        status_text: "Undetected",
+        custom_fields: [],
+        product_badges: { card: [], page: [] },
+        discord_required: false,
+        discord_guild_id: null,
+        show_views_count: false,
+        show_sales_count: false,
+        show_sales_notifications: false,
+        sales_count_hours: null,
+        created_at: liveProd.created_at || "2026-06-30T04:09:09.000000Z",
+        is_mandatory: false,
+        metadata: null
+      };
+
+      let output = data;
+      output = output.replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID));
+      output = output.replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
+
+      // Replace metadata titles and images
+      output = output.replace(/<title>.*?<\/title>/g, `<title>${liveProd.name} - RiftCheats</title>`);
+      output = output.replace(/<meta property="og:title" content=".*?"/g, `<meta property="og:title" content="${liveProd.name}"`);
+      output = output.replace(/<meta name="twitter:title" content=".*?"/g, `<meta name="twitter:title" content="${liveProd.name}"`);
+      output = output.replace(/<meta property="og:image" content=".*?"/g, `<meta property="og:image" content="${localAsset.image}"`);
+      output = output.replace(/<meta name="twitter:image" content=".*?"/g, `<meta name="twitter:image" content="${localAsset.image}"`);
+
+      // Replace product object definition
+      const productPattern = /product:\s*\{"id":774973,[\s\S]*?\}\s*,\s*productAddons/g;
+      output = output.replace(productPattern, `product: ${JSON.stringify(productJson)}, productAddons`);
+
+      // Update reviews
+      output = output.replace(/R6 Exodus Lite/g, liveProd.name);
+      output = output.replace(/External Rust/g, liveProd.name);
+      output = output.replace(/Apex Internal/g, liveProd.name);
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      res.end(output);
     });
   });
-});
-
-server.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+};

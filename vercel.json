@@ -2,21 +2,13 @@
   "version": 2,
   "functions": {
     "api/*.js": {
-      "includeFiles": "{index.html,product_detail.html}"
+      "includeFiles": "product_detail.html"
     }
   },
   "routes": [
     {
       "src": "/product/(?<slug>[a-zA-Z0-9_-]+)",
       "dest": "/api/index.js?slug=$slug"
-    },
-    {
-      "src": "/",
-      "dest": "/api/home.js"
-    },
-    {
-      "src": "/api/checkout",
-      "dest": "/api/checkout.js"
     },
     {
       "src": "/assets/(.*)",
@@ -28,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/home.js"
+      "dest": "/index.html"
     }
   ]
 }

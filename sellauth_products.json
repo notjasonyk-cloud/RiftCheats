@@ -1,0 +1,889 @@
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 651348,
+      "salt": "a42b467759c3c",
+      "path": "arc-raiders-elite",
+      "name": "Arc Raiders Elite",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 92901,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 116,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1026616,
+          "product_id": 651348,
+          "name": "1 Day",
+          "description": null,
+          "price": "7.95",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_W979YNPC6NdJ",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1026632,
+          "product_id": 651348,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_u6A22RUHcbdS",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1026633,
+          "product_id": 651348,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_i8cp4rpGwpge",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        }
+      ],
+      "images": [
+        {
+          "id": 944493,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-29T23:53:39.000000Z",
+          "updated_at": "2026-05-29T23:53:39.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944493.webp",
+          "pivot": {
+            "product_id": 651348,
+            "image_id": 944493,
+            "order": 0
+          }
+        },
+        {
+          "id": 815724,
+          "cloudflare_image_id": null,
+          "created_at": "2026-03-15T07:19:52.000000Z",
+          "updated_at": "2026-03-15T07:19:52.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/815724.webp",
+          "pivot": {
+            "product_id": 651348,
+            "image_id": 815724,
+            "order": 1
+          }
+        },
+        {
+          "id": 815739,
+          "cloudflare_image_id": null,
+          "created_at": "2026-03-15T07:38:39.000000Z",
+          "updated_at": "2026-03-15T07:38:39.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/815739.webp",
+          "pivot": {
+            "product_id": 651348,
+            "image_id": 815739,
+            "order": 2
+          }
+        }
+      ],
+      "group": {
+        "id": 92901,
+        "name": "Arc Raiders"
+      },
+      "category": null
+    },
+    {
+      "id": 651363,
+      "salt": "63de26390eb4d",
+      "path": "apex-pro",
+      "name": "Apex Pro",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 92905,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 2,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1026646,
+          "product_id": 651363,
+          "name": "3 Day",
+          "description": null,
+          "price": "14.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_VivD2UyWUwiw",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1026647,
+          "product_id": 651363,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_DykfV58zVLjr",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1026648,
+          "product_id": 651363,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_TnVMhLrCQy9c",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        },
+        {
+          "id": 1026674,
+          "product_id": 651363,
+          "name": "Lifetime",
+          "description": null,
+          "price": "199.95",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_Pf9dWApnVFtu",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 3
+        }
+      ],
+      "images": [
+        {
+          "id": 944495,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-29T23:54:08.000000Z",
+          "updated_at": "2026-05-29T23:54:08.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944495.webp",
+          "pivot": {
+            "product_id": 651363,
+            "image_id": 944495,
+            "order": 0
+          }
+        },
+        {
+          "id": 815760,
+          "cloudflare_image_id": null,
+          "created_at": "2026-03-15T07:56:45.000000Z",
+          "updated_at": "2026-03-15T07:56:45.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/815760.webp",
+          "pivot": {
+            "product_id": 651363,
+            "image_id": 815760,
+            "order": 1
+          }
+        },
+        {
+          "id": 815757,
+          "cloudflare_image_id": null,
+          "created_at": "2026-03-15T07:54:45.000000Z",
+          "updated_at": "2026-03-15T07:54:45.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/815757.webp",
+          "pivot": {
+            "product_id": 651363,
+            "image_id": 815757,
+            "order": 2
+          }
+        }
+      ],
+      "group": {
+        "id": 92905,
+        "name": "Apex Legends"
+      },
+      "category": null
+    },
+    {
+      "id": 651369,
+      "salt": "44d72967a946e",
+      "path": "r6-private",
+      "name": "R6 Private",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 92904,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 3,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1026675,
+          "product_id": 651369,
+          "name": "3 Day",
+          "description": null,
+          "price": "9.99",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_cop56kJDemm9",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1026676,
+          "product_id": 651369,
+          "name": "7 Days",
+          "description": null,
+          "price": "19.99",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_iF7HHieLNhSs",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1026677,
+          "product_id": 651369,
+          "name": "30 Days",
+          "description": null,
+          "price": "39.99",
+          "price_slash": null,
+          "quantity_min": null,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_psv4JRWsk3fp",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        }
+      ],
+      "images": [
+        {
+          "id": 944492,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-29T23:52:53.000000Z",
+          "updated_at": "2026-05-29T23:52:53.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944492.webp",
+          "pivot": {
+            "product_id": 651369,
+            "image_id": 944492,
+            "order": 0
+          }
+        },
+        {
+          "id": 955790,
+          "cloudflare_image_id": null,
+          "created_at": "2026-06-06T05:15:18.000000Z",
+          "updated_at": "2026-06-06T05:15:18.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/955790.webp",
+          "pivot": {
+            "product_id": 651369,
+            "image_id": 955790,
+            "order": 1
+          }
+        }
+      ],
+      "group": {
+        "id": 92904,
+        "name": "Rainbow Six Siege"
+      },
+      "category": null
+    },
+    {
+      "id": 740821,
+      "salt": "81b4b317780fb",
+      "path": "fortnite-private",
+      "name": "Fortnite Private",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 102708,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 0,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1210784,
+          "product_id": 740821,
+          "name": "1 Day",
+          "description": null,
+          "price": "4.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_6iRhjD5QvDY8",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1210785,
+          "product_id": 740821,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_YrWYtR78s7SV",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1210786,
+          "product_id": 740821,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_y4eztAyzGUC6",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        }
+      ],
+      "images": [
+        {
+          "id": 944503,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-29T23:58:52.000000Z",
+          "updated_at": "2026-05-29T23:58:52.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944503.webp",
+          "pivot": {
+            "product_id": 740821,
+            "image_id": 944503,
+            "order": 0
+          }
+        }
+      ],
+      "group": {
+        "id": 102708,
+        "name": "Fortnite Private"
+      },
+      "category": null
+    },
+    {
+      "id": 740827,
+      "salt": "a21ce985858f8",
+      "path": "delta-force-private",
+      "name": "Delta Force Private",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 102717,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 1,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1210803,
+          "product_id": 740827,
+          "name": "1 Day",
+          "description": null,
+          "price": "4.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_FiHmtcZtBgST",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1210804,
+          "product_id": 740827,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_CtwvfaGPfcKc",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1210805,
+          "product_id": 740827,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_hBktRU9JFgKT",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        }
+      ],
+      "images": [
+        {
+          "id": 944525,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-30T00:34:02.000000Z",
+          "updated_at": "2026-05-30T00:34:02.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944525.webp",
+          "pivot": {
+            "product_id": 740827,
+            "image_id": 944525,
+            "order": 0
+          }
+        }
+      ],
+      "group": {
+        "id": 102717,
+        "name": "Delta Force Private"
+      },
+      "category": null
+    },
+    {
+      "id": 740833,
+      "salt": "90099b53f63ef",
+      "path": "rust-private",
+      "name": "Rust Private",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 102718,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 9,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1210815,
+          "product_id": 740833,
+          "name": "1 Day",
+          "description": null,
+          "price": "4.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_dyftC7bBG2Cu",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1210816,
+          "product_id": 740833,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_SUEXCFnq9P8m",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1210817,
+          "product_id": 740833,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_2WzsTmjxRiKz",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        }
+      ],
+      "images": [
+        {
+          "id": 944529,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-30T00:45:30.000000Z",
+          "updated_at": "2026-05-30T00:45:30.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944529.webp",
+          "pivot": {
+            "product_id": 740833,
+            "image_id": 944529,
+            "order": 0
+          }
+        }
+      ],
+      "group": {
+        "id": 102718,
+        "name": "Rust Private"
+      },
+      "category": null
+    },
+    {
+      "id": 740845,
+      "salt": "75637eb65729f",
+      "path": "hwid-spoofer",
+      "name": "HWID Spoofer",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "dynamic",
+      "stock": null,
+      "group_id": 102720,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 1,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1210839,
+          "product_id": 740845,
+          "name": "1 Time",
+          "description": null,
+          "price": "29.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_xBK8CbEwofR3",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1210842,
+          "product_id": 740845,
+          "name": "Lifetime",
+          "description": null,
+          "price": "99.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": "https://panel.desynccheats.com/api/v1/fulfill/wh_AcuUYkreqFnQ",
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        }
+      ],
+      "images": [
+        {
+          "id": 944536,
+          "cloudflare_image_id": null,
+          "created_at": "2026-05-30T00:50:14.000000Z",
+          "updated_at": "2026-05-30T00:50:14.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/944536.webp",
+          "pivot": {
+            "product_id": 740845,
+            "image_id": 944536,
+            "order": 0
+          }
+        }
+      ],
+      "group": {
+        "id": 102720,
+        "name": "HWID Spoofer"
+      },
+      "category": null
+    },
+    {
+      "id": 746570,
+      "salt": "ba7850c121719",
+      "path": "valorant-private",
+      "name": "Valorant Private",
+      "price": null,
+      "currency": "USD",
+      "deliverables_type": "physical",
+      "stock": null,
+      "group_id": 103243,
+      "category_id": null,
+      "type": "variant",
+      "visibility": "public",
+      "products_sold": 0,
+      "stock_count": -1,
+      "variants": [
+        {
+          "id": 1224111,
+          "product_id": 746570,
+          "name": "1 Day",
+          "description": null,
+          "price": "9.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": null,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": null,
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 0
+        },
+        {
+          "id": 1224112,
+          "product_id": 746570,
+          "name": "7 Days",
+          "description": null,
+          "price": "29.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": 1,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": null,
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 1
+        },
+        {
+          "id": 1224113,
+          "product_id": 746570,
+          "name": "30 Days",
+          "description": null,
+          "price": "54.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": 1,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": null,
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 2
+        },
+        {
+          "id": 1224114,
+          "product_id": 746570,
+          "name": "Lifetime",
+          "description": null,
+          "price": "99.99",
+          "price_slash": null,
+          "quantity_min": 1,
+          "quantity_max": 1,
+          "volume_discounts": [],
+          "disable_volume_discounts_if_coupon": false,
+          "serial_selection_method": null,
+          "dynamic_url": null,
+          "redirect_url": null,
+          "stock": -1,
+          "instructions": null,
+          "disabled_payment_method_ids": null,
+          "order": 3
+        }
+      ],
+      "images": [
+        {
+          "id": 952749,
+          "cloudflare_image_id": null,
+          "created_at": "2026-06-04T00:59:03.000000Z",
+          "updated_at": "2026-06-04T00:59:03.000000Z",
+          "deleted_at": null,
+          "shop_id": 223549,
+          "url": "https://api.sellauth.com/storage/images/952749.webp",
+          "pivot": {
+            "product_id": 746570,
+            "image_id": 952749,
+            "order": 0
+          }
+        }
+      ],
+      "group": {
+        "id": 103243,
+        "name": "Valorant Private"
+      },
+      "category": null
+    }
+  ],
+  "first_page_url": "https://api.sellauth.com/v1/shops/223549/products?page=1",
+  "from": 1,
+  "last_page": 1,
+  "last_page_url": "https://api.sellauth.com/v1/shops/223549/products?page=1",
+  "links": [
+    {
+      "url": null,
+      "label": "&laquo; Previous",
+      "active": false
+    },
+    {
+      "url": "https://api.sellauth.com/v1/shops/223549/products?page=1",
+      "label": "1",
+      "active": true
+    },
+    {
+      "url": null,
+      "label": "Next &raquo;",
+      "active": false
+    }
+  ],
+  "next_page_url": null,
+  "path": "https://api.sellauth.com/v1/shops/223549/products",
+  "per_page": 20,
+  "prev_page_url": null,
+  "to": 8,
+  "total": 8
+}

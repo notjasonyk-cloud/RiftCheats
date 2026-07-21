@@ -4,20 +4,8 @@ const path = require('path');
 const https = require('https');
 
 const PORT = process.env.PORT || 3500;
-const API_KEY = process.env.SELLAUTH_API_KEY;
-const SHOP_ID = process.env.SELLAUTH_SHOP_ID;
-const API_URL = process.env.SELLAUTH_API_URL;
-
-function getProductsUrl() {
-  const configuredUrl = new URL(API_URL);
-  const cleanPath = configuredUrl.pathname.replace(/\/$/, '');
-  if (/\/v1\/shops\/[^/]+\/products$/.test(cleanPath)) {
-    configuredUrl.pathname = cleanPath.replace(/\/v1\/shops\/[^/]+\/products$/, `/v1/shops/${SHOP_ID}/products`);
-  } else {
-    configuredUrl.pathname = `${cleanPath}/v1/shops/${SHOP_ID}/products`.replace(/\/+/g, '/');
-  }
-  return configuredUrl;
-}
+const API_KEY = "5949675|V9MHzw3p1eegHlQ5DdLAF5kOF4aQGtHeHcGAxHwk0f93ec25";
+const SHOP_ID = "223549";
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -92,16 +80,19 @@ function fetchProductsFromSellAuth(callback) {
   }
 
   const options = {
+    hostname: 'api.sellauth.com',
+    path: `/v1/shops/${SHOP_ID}/products`,
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    }
+    },
+    rejectUnauthorized: false // Ignore local SSL verification issues if any
   };
 
-  const req = https.request(getProductsUrl(), options, (res) => {
+  const req = https.request(options, (res) => {
     let body = '';
     res.on('data', (chunk) => body += chunk);
     res.on('end', () => {
@@ -129,28 +120,8 @@ function fetchProductsFromSellAuth(callback) {
 }
 
 const server = http.createServer((req, res) => {
-  if (!API_KEY || !SHOP_ID || !API_URL) {
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Server configuration error: missing SellAuth environment variables.');
-    return;
-  }
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   let pathname = parsedUrl.pathname;
-
-  const sendHtmlTemplate = (filePath) => {
-    fs.readFile(filePath, 'utf8', (error, template) => {
-      if (error) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Internal Server Error');
-        return;
-      }
-      const output = template
-        .replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID))
-        .replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(output);
-    });
-  };
 
   // Intercept product routes: /product/:slug
   const productMatch = pathname.match(/^\/product\/([a-zA-Z0-9_-]+)$/);
@@ -251,8 +222,6 @@ const server = http.createServer((req, res) => {
           };
 
           let output = data;
-          output = output.replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID));
-          output = output.replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
 
           // Replace metadata titles and images
           output = output.replace(/<title>.*?<\/title>/g, `<title>${liveProd.name} - RiftCheats</title>`);
@@ -296,18 +265,15 @@ const server = http.createServer((req, res) => {
       if (exists && fs.statSync(filePath).isFile()) {
         const ext = path.extname(filePath).toLowerCase();
         const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-        if (ext === '.html') {
-          sendHtmlTemplate(filePath);
-          return;
-        }
+        
         res.writeHead(200, { 'Content-Type': contentType });
         fs.createReadStream(filePath).pipe(res);
       } else {
         const indexPath = path.join(__dirname, 'index.html');
         fs.exists(indexPath, (indexExists) => {
           if (indexExists) {
-            sendHtmlTemplate(indexPath);
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            fs.createReadStream(indexPath).pipe(res);
           } else {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('404 Not Found');

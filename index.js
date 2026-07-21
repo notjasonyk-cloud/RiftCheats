@@ -2,20 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const API_KEY = process.env.SELLAUTH_API_KEY;
-const SHOP_ID = process.env.SELLAUTH_SHOP_ID;
-const API_URL = process.env.SELLAUTH_API_URL;
-
-function getProductsUrl() {
-  const configuredUrl = new URL(API_URL);
-  const cleanPath = configuredUrl.pathname.replace(/\/$/, '');
-  if (/\/v1\/shops\/[^/]+\/products$/.test(cleanPath)) {
-    configuredUrl.pathname = cleanPath.replace(/\/v1\/shops\/[^/]+\/products$/, `/v1/shops/${SHOP_ID}/products`);
-  } else {
-    configuredUrl.pathname = `${cleanPath}/v1/shops/${SHOP_ID}/products`.replace(/\/+/g, '/');
-  }
-  return configuredUrl;
-}
+const API_KEY = process.env.SELLAUTH_API_KEY || "5949675|V9MHzw3p1eegHlQ5DdLAF5kOF4aQGtHeHcGAxHwk0f93ec25";
+const SHOP_ID = process.env.SELLAUTH_SHOP_ID || "223549";
 
 // Map URL path slugs to SellAuth product path strings
 const SLUG_TO_PATH = {
@@ -69,16 +57,19 @@ function fetchProductsFromSellAuth(callback) {
   }
 
   const options = {
+    hostname: 'api.sellauth.com',
+    path: `/v1/shops/${SHOP_ID}/products`,
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    }
+    },
+    rejectUnauthorized: false
   };
 
-  const req = https.request(getProductsUrl(), options, (res) => {
+  const req = https.request(options, (res) => {
     let body = '';
     res.on('data', (chunk) => body += chunk);
     res.on('end', () => {
@@ -105,12 +96,6 @@ function fetchProductsFromSellAuth(callback) {
 }
 
 module.exports = (req, res) => {
-  if (!API_KEY || !SHOP_ID || !API_URL) {
-    res.statusCode = 500;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Server configuration error: missing SellAuth environment variables.');
-    return;
-  }
   // Extract slug from request (either from rewritten query parameter or directly from original URL)
   let slug = req.query.slug;
   if (!slug) {
@@ -219,8 +204,6 @@ module.exports = (req, res) => {
       };
 
       let output = data;
-      output = output.replaceAll('__SELLAUTH_SHOP_ID__', String(SHOP_ID));
-      output = output.replaceAll('__SELLAUTH_API_BASE_URL__', new URL(API_URL).origin + '/');
 
       // Replace metadata titles and images
       output = output.replace(/<title>.*?<\/title>/g, `<title>${liveProd.name} - RiftCheats</title>`);
